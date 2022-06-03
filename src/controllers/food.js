@@ -1,20 +1,55 @@
-const mongoose = require("mongoose");
+const Food = require('../models/food')
 
-exports.list = function (req, res) {
-  let body = req.body;
 
-  res.status(200).send(body);
+exports.list = async (req, res) => {
+  try {
+    const foods = await Food.find({})
+    res.send(foods)
+  } catch (e) {
+    res.status(500).send(e)
+  }
 };
 
-exports.create = function (req, res) {
-  let body = req.body;
-  console.log({body})
-
-  res.status(200).send(body);
+exports.create = async (req, res) => {
+  let food = new Food(req.body);
+  try {
+    await food.save();
+    res.sendStatus(200)
+  } catch (e) {
+    res.sendStatus(400)
+  }
 };
 
-exports.read = function (req, res) {};
+exports.read = async (req, res) => {
+  let id = req.params.id
+  try {
+    let food = await Food.findById(id)
+    if (!food) return res.sendStatus(404)
+    res.send(food)
+  } catch (e) {
+    res.sendStatus(500)
+  }
+};
 
-exports.update = function (req, res) {};
+exports.update = async (req, res) => {
+  let id = req.params.id
+  try {
+    let food = await Food.findByIdAndUpdate(id, req.body)
+    console.log({food})
+    if (!food) return res.sendStatus(404)
+    res.sendStatus(200)
+  } catch (e) {
+    console.log({e})
+    res.sendStatus(500)
+  }
+};
 
-exports.delete = function (req, res) {};
+exports.delete = async (req, res) => { 
+  let id=req.params.id
+  try {
+    await Food.findByIdAndDelete(id)
+    res.sendStatus(200)
+  } catch (e) {
+    res.sendStatus(500)
+  }
+};

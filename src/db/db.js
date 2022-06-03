@@ -1,9 +1,10 @@
-import Mongoose from "mongoose";
-import config from "config";
+const Mongoose=require("mongoose")
 
 Mongoose.connect(
-  "http:localhost:3000/restaurant_olympus",
-  config.database.properties
+  "mongodb://localhost:27017/restaurant-olympus",
+  {
+    useNewUrlParser: true,
+}
 );
 
 const db = Mongoose.connection;

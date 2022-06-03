@@ -2,11 +2,31 @@ GET http://localhost:3000
 ###
 GET http://localhost:3000/menu/100
 
+
+### Get all foods
+GET http://localhost:3000/foods
+
 ### create food 
-POST http://localhost:3000/food
+POST http://localhost:3000/foods
+Content-type: application/json
+
+{
+  "title":"Bla Burger",
+  "description":"shieet",
+}
+
+### Get food by id
+GET http://localhost:3000/foods/629a8c6d27eaf133f04633a2
+
+### Update food
+
+PATCH  http://localhost:3000/foods/629a8c6d27eaf133f04633a2
 Content-type: application/json
 
 {
   "title":"Big Burger",
-  "description":"Big fat Burger"
+  "description":"Some Fat Burger",
 }
+
+### Delete food
+DELETE http://localhost:3000/foods/629a9769086dfe0e98b51b31

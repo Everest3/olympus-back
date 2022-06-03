@@ -1,8 +1,11 @@
 const express = require("express");
-const menu = require("./src/routes/menu");
-const food = require("./src/routes/food");
+const menu = require("./routes/menu");
+const food = require("./routes/food");
 const app = express();
+require("./db/db")
+const helmet = require("helmet");
 
+app.use(helmet());
 app.use(express.json());
 app.use(menu);
 app.use(food);
