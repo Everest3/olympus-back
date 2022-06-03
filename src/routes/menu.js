@@ -7,7 +7,7 @@ routes.route("/").get((req, res) => {
 });
 
 routes
-  .route("/:id")
+  .route("/menu/:id")
   .post((req, res) => {
     res.status(200).send("post menu");
   })

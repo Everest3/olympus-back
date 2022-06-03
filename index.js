@@ -1,9 +1,10 @@
 const express = require("express");
-const menu = require("./routes/menu");
-const food = require("./routes/food");
+const menu = require("./src/routes/menu");
+const food = require("./src/routes/food");
 const app = express();
 
-app.use("/menu", menu);
+app.use(express.json());
+app.use(menu);
 app.use(food);
 app.get("/", (req, res) => {
   res.send("hello bitch");

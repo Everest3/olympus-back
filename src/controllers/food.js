@@ -8,6 +8,7 @@ exports.list = function (req, res) {
 
 exports.create = function (req, res) {
   let body = req.body;
+  console.log({body})
 
   res.status(200).send(body);
 };
