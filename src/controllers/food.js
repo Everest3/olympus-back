@@ -35,11 +35,9 @@ exports.update = async (req, res) => {
   let id = req.params.id
   try {
     let food = await Food.findByIdAndUpdate(id, req.body)
-    console.log({food})
     if (!food) return res.sendStatus(404)
     res.sendStatus(200)
   } catch (e) {
-    console.log({e})
     res.sendStatus(500)
   }
 };
