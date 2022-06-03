@@ -1,0 +1,12 @@
+GET http://localhost:3000
+###
+GET http://localhost:3000/menu/100
+
+### create food 
+POST http://localhost:3000/food
+content-type:: application/json
+
+{
+  title:"Big Burger",
+  description:"Big fat Burger"
+}
