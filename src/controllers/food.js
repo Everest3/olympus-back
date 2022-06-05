@@ -11,6 +11,7 @@ exports.list = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
+  req.body.img=req.file.buffer
   let food = new Food(req.body);
   try {
     await food.save();

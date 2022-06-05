@@ -10,6 +10,9 @@ const FoodSchema = new Schema({
   description: {
     type: String,
   },
+  img:{
+    type:Buffer
+  }
 });
 
 module.exports = mongoose.model("Food", FoodSchema);

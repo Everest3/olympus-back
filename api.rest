@@ -8,11 +8,11 @@ GET http://localhost:3000/foods
 
 ### create food 
 POST http://localhost:3000/foods
-Content-type: application/json
+Content-type: multipart/form-data
 
 {
   "title":"Bla Burger",
-  "description":"shieet",
+  "description":"shieet"
 }
 
 ### Get food by id
@@ -25,7 +25,7 @@ Content-type: application/json
 
 {
   "title":"Big Burger",
-  "description":"Some Fat Burger",
+  "description":"Some Fat Burger"
 }
 
 ### Delete food
