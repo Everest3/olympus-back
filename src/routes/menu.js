@@ -1,19 +1,18 @@
 const express = require("express");
-
+const menu = require("../controllers/menu");
+const imageUpload=require("../middlewares/imageUpload.js")
 const routes = express.Router();
 
-routes.route("/").get((req, res) => {
-  res.status(200).send("all menus");
-});
+routes.route("/menus")
+    .post(imageUpload.single("img"),menu.create)
+    .get(menu.list)
 
-routes
-  .route("/menu/:id")
-  .post((req, res) => {
-    res.status(200).send("post menu");
-  })
-  .get((req, res) => {
-    let id = req.params.id;
-    res.status(200).send("menu with id" + id);
-  });
+routes.route("/grouped-foods")
+.get(menu.groupedFoods)   
+
+routes.route("/menus/:id")
+    .get(menu.read)
+    .patch(menu.update)
+    .delete(menu.delete)
 
 module.exports = routes;

@@ -9,9 +9,11 @@ app.use(helmet());
 app.use(express.json());
 app.use(menu);
 app.use(food);
-app.get("/", (req, res) => {
-  res.send("hello bitch");
-});
+
+
+const main = async () =>{
+ 
+}
 
 app.listen(3000, () => {
   console.log("Server is running at port 3000");

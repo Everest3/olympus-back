@@ -1,0 +1,32 @@
+GET http://localhost:3000
+###
+GET http://localhost:3000/menu/100
+
+
+### Get all menus
+GET http://localhost:3000/menus
+
+### create menu 
+POST http://localhost:3000/menus
+Content-type: multipart/form-data
+
+{
+  "title":"Bla Burger",
+  "description":"shieet"
+}
+
+### Get menu by id
+GET http://localhost:3000/menus/629a8c6d27eaf133f04633a2
+
+### Update menu
+
+PATCH  http://localhost:3000/menus/629a8c6d27eaf133f04633a2
+Content-type: application/json
+
+{
+  "title":"Big Burger",
+  "description":"Some Fat Burger"
+}
+
+### Delete menu
+DELETE http://localhost:3000/menus/629a9769086dfe0e98b51b31

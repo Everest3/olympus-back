@@ -1,7 +1,6 @@
 const express = require("express");
 const imageUpload=require("../middlewares/imageUpload.js")
 const food = require("../controllers/food");
-const multer = require('multer');
 
 const routes = express.Router();
 
