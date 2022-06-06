@@ -7,8 +7,6 @@ routes.route("/menus")
     .post(imageUpload.single("img"),menu.create)
     .get(menu.list)
 
-routes.route("/grouped-foods")
-.get(menu.groupedFoods)   
 
 routes.route("/menus/:id")
     .get(menu.read)
