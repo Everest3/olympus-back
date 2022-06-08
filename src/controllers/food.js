@@ -1,4 +1,5 @@
 const Food = require('../models/food')
+var mongoose = require('mongoose');
 
 
 exports.list = async (req, res) => {
@@ -13,6 +14,8 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res) => {
   req.body.img=req.file.buffer
+  let temp = mongoose.Types.ObjectId(req.body.menu);
+  req.body.menu=temp
   let food = new Food(req.body);
   try {
     await food.save();

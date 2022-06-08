@@ -1,5 +1,6 @@
 const Menu = require('../models/menu')
 const Food = require('../models/food')
+var mongoose = require('mongoose');
 
 
 exports.list = async (req, res) => {
@@ -14,19 +15,23 @@ exports.list = async (req, res) => {
 
 exports.create = async (req, res) => {
   req.body.img=req.file.buffer
+  let temp = mongoose.Types.ObjectId(req.body.food);
+  req.body.foods = [temp];
+  console.log(req.body);
   let menu = new Menu(req.body);
   try {
     await menu.save();
     res.sendStatus(200)
   } catch (e) {
     res.sendStatus(400)
+
   }
 };
 
 exports.read = async (req, res) => {
   let id = req.params.id
   try {
-    let menu = await Menu.findById(id).populate("foods").exec()
+    let menu = await Menu.findById(id).populate('foods').exec((res))
     if (!menu) return res.sendStatus(404)
     res.send(menu)
   } catch (e) {
