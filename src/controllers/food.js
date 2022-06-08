@@ -18,6 +18,7 @@ exports.create = async (req, res) => {
     await food.save();
     res.sendStatus(200)
   } catch (e) {
+    console.log({e})
     res.sendStatus(400)
   }
 };

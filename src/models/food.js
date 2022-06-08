@@ -7,16 +7,11 @@ const FoodSchema = new Schema({
     type: String,
     required: true,
   },
-  description: {
-    type: String,
-  },
-  img:{
-    type:Buffer
-  },
+  description: String,
+  img: Buffer,
   menu:{
-    type:Schema.Types.ObjectId,
-    ref:"Menu",
-    required:true
+      type:Schema.Types.ObjectId,
+      ref:"Menu",
   }
 },{
   collection:"Food",
