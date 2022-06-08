@@ -7,9 +7,7 @@ const MenuSchema = new Schema({
     type: String,
     required: true,
   },
-  img:{
-    type:Buffer
-  },
+  img:String,
   foods:[{
     type:Schema.Types.ObjectId,
     ref:"Food",
@@ -19,10 +17,5 @@ const MenuSchema = new Schema({
   versionKey:false
 });
 
-// MenuSchema.virtual("foods",{
-//   ref:"Food",
-//   localField:"_id",
-//   foreignField:"menu"
-// })
 
 module.exports = mongoose.model("Menu", MenuSchema);

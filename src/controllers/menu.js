@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 exports.list = async (req, res) => {
   try {
-    let excludeFields=req.body?.exclude.map(field=>"-"+field) ?? []
+    let excludeFields=req.body?.exclude?.map(field=>"-"+field) ?? []
     const menus = await Menu.find({}).select(excludeFields)
     res.send(menus)
   } catch (e) {
@@ -14,10 +14,8 @@ exports.list = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  req.body.img=req.file.buffer
-  let temp = mongoose.Types.ObjectId(req.body.food);
-  req.body.foods = [temp];
-  console.log(req.body);
+  let img=req?.file?.path?.split("public/").pop() ??""
+  req.body.img=img
   let menu = new Menu(req.body);
   try {
     await menu.save();
