@@ -14,9 +14,7 @@ app.use(helmet());
 app.use(express.json());
 
 app.use(menu);
-app.use(food);
-
-process.env.DB_HOST
+app.use(food);process.env.DB_HOST
 app.listen(port, () => {
   console.log("Server is running at port " + port);
 });

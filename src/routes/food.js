@@ -1,7 +1,6 @@
 const express = require("express");
 const imageUpload=require("../middlewares/imageUpload.js")
 const food = require("../controllers/food");
-
 const routes = express.Router();
 
 routes.route("/foods")
@@ -10,7 +9,7 @@ routes.route("/foods")
 
 routes.route("/foods/:id")
     .get(food.read)
-    .patch(food.update)
+    .patch(imageUpload.single("img"),food.update)
     .delete(food.delete)
 
 module.exports = routes;

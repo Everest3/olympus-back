@@ -6,6 +6,7 @@ const MenuSchema = new Schema({
   title: {
     type: String,
     required: true,
+    unique:true
   },
   img:String,
   foods:[{
