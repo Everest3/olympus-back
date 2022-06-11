@@ -5,9 +5,11 @@ const food = require("./routes/food");
 const app = express();
 require("./db/db")
 const helmet = require("helmet");
+var cors = require('cors')
 const port = process.env.PORT || 3000
 
-
+app.options('*', cors()) 
+app.use(cors())
 app.use(express.static('public')); 
 app.use('public/images', express.static('images'));
 app.use(helmet());

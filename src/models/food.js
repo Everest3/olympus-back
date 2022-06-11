@@ -12,6 +12,10 @@ const FoodSchema = new Schema({
   menu:{
       type:Schema.Types.ObjectId,
       ref:"Menu",
+  },
+  price:{
+    type:String,
+    required:true
   }
 },{
   collection:"Food",

@@ -19,7 +19,7 @@ exports.list = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  let img=req?.file?.path?.split("public/").pop() ??""
+  let img= "images/"+req.file.filename
   req.body.img=img
   let menu = new Menu(req.body);
   try {
@@ -65,19 +65,11 @@ exports.delete = async (req, res) => {
   try {
     const result=await Menu.findByIdAndDelete(id)
     let foodIds=result.foods.map(food=>food._id)
-    if(deleteFoods){
-      await Food.deleteMany({
-        _id: {
-          $in: foodIds,
-        },
-      });  
-    }else{
       await Food.updateMany(
         { _id: { $in: foodIds } },
-        { $set: { menu: mongoose.Types.ObjectId("000000000000000000000000") } },
+        { $set: { menu:"" } },
         {multi: true}
       );
-    }
 
 
     res.sendStatus(200)
