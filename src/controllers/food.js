@@ -15,7 +15,7 @@ exports.list = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  let img=req?.file?.path?.split("public/").pop() ?? ""
+  let img= "images/"+req?.file?.filename
   req.body.img=img
   let menuId =req.body?.menu ? mongoose.Types.ObjectId(req.body.menu ):"";
   
