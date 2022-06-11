@@ -19,8 +19,6 @@ exports.list = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  let img= "images/"+req.file.filename
-  req.body.img=img
   let menu = new Menu(req.body);
   try {
     await menu.save();

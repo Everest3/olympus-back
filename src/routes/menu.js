@@ -4,7 +4,7 @@ const imageUpload=require("../middlewares/imageUpload.js")
 const routes = express.Router();
 
 routes.route("/menus")
-    .post(imageUpload.single("img"),menu.create)
+    .post(menu.create)
     .get(menu.list)
 
 

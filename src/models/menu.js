@@ -8,7 +8,6 @@ const MenuSchema = new Schema({
     required: true,
     unique:true
   },
-  img:String,
   foods:[{
     type:Schema.Types.ObjectId,
     ref:"Food",
