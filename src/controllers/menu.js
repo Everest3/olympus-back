@@ -5,12 +5,12 @@ var mongoose = require('mongoose');
 
 exports.list = async (req, res) => {
   try {
-    let excludeFields=req.body?.exclude?.map(field=>"-"+field) ?? []
+    let excludeFields = req.body?.exclude?.map(field => "-" + field) ?? []
     let menus;
-    if(req.body?.isSimple){
-      menus = await Menu.find({}).select([...excludeFields,"-foods"])
-    }else{
-      menus=await Menu.find({}).select(excludeFields).populate('foods',"-menu").exec()
+    if (req.body?.isSimple) {
+      menus = await Menu.find({}).select([...excludeFields, "-foods"])
+    } else {
+      menus = await Menu.find({}).select(excludeFields).populate('foods', "-menu").exec()
     }
     res.send(menus)
   } catch (e) {
@@ -33,10 +33,10 @@ exports.read = async (req, res) => {
   let id = req.params.id
   try {
     let menu;
-    if(req.body?.isSimple){
+    if (req.body?.isSimple) {
       menu = await Menu.findById(id).select("-foods")
       return res.send(menu)
-    }else{
+    } else {
       menu = await Menu.findById(id).populate('foods').exec((res))
     }
     if (!menu) return res.sendStatus(404)
@@ -57,17 +57,17 @@ exports.update = async (req, res) => {
   }
 };
 
-exports.delete = async (req, res) => { 
-  let id=req.params.id
-  let deleteFoods=req?.body?.deleteFoods
+exports.delete = async (req, res) => {
+  let id = req.params.id
+  let deleteFoods = req?.body?.deleteFoods
   try {
-    const result=await Menu.findByIdAndDelete(id)
-    let foodIds=result.foods.map(food=>food._id)
-      await Food.updateMany(
-        { _id: { $in: foodIds } },
-        { $set: { menu:"" } },
-        {multi: true}
-      );
+    const result = await Menu.findByIdAndDelete(id)
+    let foodIds = result.foods.map(food => food._id)
+    await Food.updateMany(
+      { _id: { $in: foodIds } },
+      { $set: { menu: "" } },
+      { multi: true }
+    );
 
 
     res.sendStatus(200)
